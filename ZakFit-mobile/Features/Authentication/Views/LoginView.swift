@@ -22,8 +22,6 @@ struct LoginView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 300, height: 150)
-                    .padding(.bottom, 20)
-                    .padding(.top, 20)
                 
                 VStack(spacing: 8) {
                     Text("Bon retour !")
@@ -84,13 +82,16 @@ struct LoginView: View {
                         .font(.custom("Lexend-Bold", size: 17))
                         .foregroundColor(.primary)
                     
-                    NavigationLink(destination: RegisterView()) {
+                    NavigationLink(
+                        destination: RegisterView(appState: appState)
+                    ) {
                         Text("Créer un compte")
                             .font(.custom("Lexend-Bold", size: 17))
                             .foregroundColor(Color("light-orange"))
                     }
                 }
             }
+            .navigationBarHidden(true)
             .padding()
         }
     }
