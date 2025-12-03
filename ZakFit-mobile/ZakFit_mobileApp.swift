@@ -11,7 +11,7 @@ import SwiftUI
 struct ZakFit_mobileApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView(viewModel: LoginViewModel())
         }
     }
 }
