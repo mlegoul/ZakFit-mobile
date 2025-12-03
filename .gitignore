@@ -1,0 +1,34 @@
+# Xcode
+#
+build/
+*.pbproj.user
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+*.xcworkspace
+!default.xcworkspace
+xcuserdata/
+DerivedData/
+*.xcodeproj/xcshareddata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.DS_Store
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+#
+.build/
+.Package.resolved
+*.swiftpm
+
+# CocoaPods
+#
+Pods/
+Podfile.lock
