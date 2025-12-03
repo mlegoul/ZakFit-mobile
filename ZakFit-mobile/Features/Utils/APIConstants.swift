@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  APIConstants.swift
 //  ZakFit-mobile
 //
 //  Created by Mehdi Legoullon on 03/12/2025.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct LoginResponse: Codable {
-    let token: String
+struct APIConstants {
+    static let baseURL = "http://127.0.0.1:8080"
 }

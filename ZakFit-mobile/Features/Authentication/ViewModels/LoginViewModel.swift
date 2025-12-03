@@ -10,20 +10,28 @@ import Observation
 
 @Observable
 final class LoginViewModel {
+    private let appState: AppState
     var email: String = ""
     var password: String = ""
-    var errorMessage: String?
     var isLoading = false
     
+    init(appState: AppState) {
+        self.appState = appState
+    }
     
     func login() async {
         isLoading = true
-        errorMessage = nil
+        defer { isLoading = false }
         
-        guard !email.isEmpty, !password.isEmpty else {
-            errorMessage = "Veuillez remplir tous les champs."
-            return
+        do {
+            let token = try await AuthService.shared.login(
+                email: email,
+                password: password
+            )
+            appState.token = token
+            appState.isLoggedIn = true
+        } catch {
+            print("Erreur de connexion: \(error)")
         }
-        isLoading = false
     }
 }

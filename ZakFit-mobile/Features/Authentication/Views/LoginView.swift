@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var viewModel: LoginViewModel
+    @Environment(AppState.self) private var appState
+    @State private var viewModel: LoginViewModel
+    
+    init(appState: AppState) {
+        _viewModel = State(wrappedValue: LoginViewModel(appState: appState))
+    }
     
     var body: some View {
         NavigationStack {
@@ -68,8 +73,8 @@ struct LoginView: View {
                             .background(Color.black)
                             .cornerRadius(25)
                     }
+                    .disabled(viewModel.isLoading)
                     .padding(.top, 50)
-
                 }
                 
                 Spacer()
@@ -92,5 +97,6 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(viewModel: LoginViewModel())
+    LoginView(appState: AppState())
+        .environment(AppState())
 }
