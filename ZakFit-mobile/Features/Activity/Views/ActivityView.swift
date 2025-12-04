@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct ActivityView: View {
-    @Environment(AppState.self) private var appState
     @State private var viewModel: ActivityViewModel
     
     init() {
-        _viewModel = State(
-            wrappedValue: ActivityViewModel(appState: AppState())
-        )
+        _viewModel = State(wrappedValue: ActivityViewModel(appState: AppState()))
     }
     
     var body: some View {

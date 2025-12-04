@@ -42,7 +42,6 @@ class MealViewModel {
         
         do {
             try await mealService.addMeal(meal: meal, token: appState.token)
-            print("Repas soumis avec succès")
         } catch {
             errorMessage = error.localizedDescription
         }

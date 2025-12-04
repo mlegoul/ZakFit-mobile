@@ -93,3 +93,11 @@ enum MealType: String, CaseIterable {
     case snack = "Collation"
     case dinner = "Dîner"
 }
+
+func formattedDate(_ date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
+    formatter.locale = Locale(identifier: "fr_FR")
+    return formatter.string(from: date)
+}

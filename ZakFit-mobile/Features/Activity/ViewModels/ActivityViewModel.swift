@@ -37,7 +37,6 @@ class ActivityViewModel {
                 activityData: activityData,
                 token: appState.token
             )
-            print("Activity submitted successfully")
         } catch {
             errorMessage = error.localizedDescription
         }

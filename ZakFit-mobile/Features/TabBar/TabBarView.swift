@@ -32,12 +32,10 @@ struct TabBarView: View {
                 Label("Activités", systemImage: "figure.run")
             }
             
-            Tab(role: .search) {
-                NavigationStack {
-                    SearchView()
-                        .searchable(text: $text, prompt: "Rechercher")
-                        .disabled(true)
-                }
+            Tab {
+                NavigationStack { SearchView() }
+            } label: {
+                Label("Rechercher", systemImage: "magnifyingglass")
             }
         }
         .tint(Color("light-orange"))
