@@ -17,6 +17,7 @@ final class RegisterViewModel {
     var password: String = ""
     var passwordConfirmation: String = ""
     var isLoading = false
+    var errorMessage: String?
     
     init(appState: AppState) {
         self.appState = appState
@@ -27,17 +28,25 @@ final class RegisterViewModel {
         defer { isLoading = false }
         
         do {
-            let token = try await AuthService.shared
-                .register(
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    password: password,
-                    passwordConfirmation: passwordConfirmation
-                )
+            let token = try await AuthService.shared.register(
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                passwordConfirmation: passwordConfirmation
+            )
+            
+            let keychainSuccess = KeychainService.shared.saveToken(token, forKey: "userToken")
+            if !keychainSuccess {
+                print("Erreur : Impossible de supprimer le token de la Keychain.")
+            }
+            
             appState.token = token
             appState.isLoggedIn = true
+            appState.loadUser()
+            
         } catch {
+            errorMessage = "Erreur d'inscription : \(error.localizedDescription)"
             print("Erreur d'inscription: \(error)")
         }
     }

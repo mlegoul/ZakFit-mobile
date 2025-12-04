@@ -5,8 +5,7 @@
 //  Created by Mehdi Legoullon on 04/12/2025.
 //
 
-import SwiftUI
-import Observation
+import Foundation
 
 @Observable
 class ActivityViewModel {
@@ -25,13 +24,13 @@ class ActivityViewModel {
     func submitActivity() async {
         isLoading = true
         errorMessage = nil
-        
+                
         let activityData = [
             "type": type.backendValue,
             "duration": duration,
             "calories": calories
         ] as [String: Any]
-        
+                
         do {
             try await ActivityService().postActivity(
                 activityData: activityData,
@@ -39,6 +38,7 @@ class ActivityViewModel {
             )
         } catch {
             errorMessage = error.localizedDescription
+            print("Erreur lors de l'envoi : \(error.localizedDescription)")
         }
         isLoading = false
     }

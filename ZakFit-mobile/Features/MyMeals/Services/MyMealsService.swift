@@ -15,7 +15,7 @@ final class MyMealsService {
     }
     
     func fetchMyMeals() async throws -> [MealRecord] {
-        let urlString = "http://localhost:8080/meals/history"
+        let urlString = "\(APIConstants.baseURL)/meals/history"
         
         guard let url = URL(string: urlString) else {
             throw NetworkError.invalidURL
@@ -39,11 +39,11 @@ final class MyMealsService {
             }
                         
             if !(200...299).contains(httpResponse.statusCode) {
-                let message = String(data: data, encoding: .utf8) ?? "Aucun message"
+                _ = String(data: data, encoding: .utf8) ?? "Aucun message"
                 throw NetworkError.requestFailed
             }
             
-            let jsonString = String(data: data, encoding: .utf8) ?? "Impossible de décoder"
+            _ = String(data: data, encoding: .utf8) ?? "Impossible de décoder"
             
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601

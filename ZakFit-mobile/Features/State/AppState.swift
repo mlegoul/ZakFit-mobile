@@ -33,8 +33,10 @@ final class AppState {
         }
     }
     
+    
     private func fetchUserInfo() {
         Task {
+            print("Token utilisé pour fetchUserInfo : \(self.token ?? "nil")")
             do {
                 self.user = try await UserService().fetchUserData()
             } catch {

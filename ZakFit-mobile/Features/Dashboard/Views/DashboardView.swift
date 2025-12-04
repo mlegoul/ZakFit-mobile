@@ -5,13 +5,6 @@
 //  Created by Mehdi Legoullon on 03/12/2025.
 //
 
-//
-//  DashboardView.swift
-//  ZakFit-mobile
-//
-//  Created by Mehdi Legoullon on 03/12/2025.
-//
-
 import SwiftUI
 
 struct DashboardView: View {
@@ -26,7 +19,7 @@ struct DashboardView: View {
                         .fontWeight(.bold)
                     Spacer()
 
-                    NavigationLink(destination: ProfileView()) {
+                    NavigationLink(destination: ProfileView(appState: appState)) {
                         Image(systemName: "person.circle.fill")
                             .font(.system(size: 19, weight: .bold))
                             .foregroundColor(.white)
