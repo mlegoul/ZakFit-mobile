@@ -24,10 +24,11 @@ struct ProfileView: View {
             
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color("light-grey"))
-                .frame(width: 360, height: 125)
+                .frame(width: 360, height: 150)
                 .overlay(
                     VStack(alignment: .leading, spacing: 0) {
-                        NavigationLink(destination: MyActivitiesView()) {
+                        
+                        NavigationLink(destination: ProfileDataView()) {
                             HStack(spacing: 0) {
                                 Text("Informations Personnelles")
                                     .font(.custom("Lexend-Medium", size: 16))
@@ -46,7 +47,7 @@ struct ProfileView: View {
                         Divider()
                             .padding(.leading, 44)
                         
-                        NavigationLink(destination: MyMealsView()) {
+                        NavigationLink(destination: ProfileHealthView()) {
                             HStack(spacing: 0) {
                                 Text("Informations de Santé")
                                     .font(.custom("Lexend-Medium", size: 16))
@@ -61,11 +62,29 @@ struct ProfileView: View {
                             .padding(.leading, 16)
                             .contentShape(Rectangle())
                         }
+                        
+                        Divider()
+                            .padding(.leading, 44)
+                        
+                        NavigationLink(destination: GoalView()) {
+                            HStack(spacing: 0) {
+                                Text("Objectifs")
+                                    .font(.custom("Lexend-Medium", size: 16))
+                                    .padding(.leading, 8)
+                                    .foregroundColor(.black)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.black)
+                                    .padding(.trailing, 16)
+                            }
+                            .padding(.vertical, 12)
+                            .padding(.leading, 16)
+                            .contentShape(Rectangle())
+                        }
+                        
                     }
                 )
                 .padding(.horizontal)
-            
-            Spacer()
             
             HStack {
                 Button(action: {
@@ -77,9 +96,11 @@ struct ProfileView: View {
                         .underline()
                 }
                 .padding(.leading, 20)
-                Spacer()
             }
-            .padding(.bottom, 80)
+            .padding(.top, 80)
+            
+            Spacer()
+
             
             Button(action: {
                 Task {
