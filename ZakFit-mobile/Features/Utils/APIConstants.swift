@@ -86,3 +86,10 @@ enum ActivityType: String, CaseIterable, Identifiable {
         }
     }
 }
+
+enum MealType: String, CaseIterable {
+    case breakfast = "Petit-déj"
+    case lunch = "Déjeuner"
+    case snack = "Collation"
+    case dinner = "Dîner"
+}

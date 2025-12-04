@@ -22,7 +22,7 @@ class ActivityViewModel {
         self.appState = appState
     }
     
-    func submitActivity() {
+    func submitActivity() async {
         isLoading = true
         errorMessage = nil
         
@@ -30,19 +30,17 @@ class ActivityViewModel {
             "type": type.backendValue,
             "duration": duration,
             "calories": calories
-        ] as [String : Any]
+        ] as [String: Any]
         
-        Task {
-            do {
-                try await ActivityService().postActivity(
-                    activityData: activityData,
-                    token: appState.token
-                )
-                print("Activity submitted successfully")
-            } catch {
-                errorMessage = error.localizedDescription
-            }
-            isLoading = false
+        do {
+            try await ActivityService().postActivity(
+                activityData: activityData,
+                token: appState.token
+            )
+            print("Activity submitted successfully")
+        } catch {
+            errorMessage = error.localizedDescription
         }
+        isLoading = false
     }
 }
