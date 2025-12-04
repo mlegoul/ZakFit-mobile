@@ -7,14 +7,19 @@
 
 import SwiftUI
 import Observation
+import Combine
 
 @Observable
 final class AppState {
     
+    var selectedTab: Int = 2
+
     init() {
         self.token = KeychainService.shared.getToken(forKey: "userToken")
         self.isLoggedIn = token != nil
     }
+    
+    
     
     var token: String? {
         didSet {

@@ -15,7 +15,7 @@ struct ZakFitApp: App {
     var body: some Scene {
         WindowGroup {
             if appState.isLoggedIn {
-                DashboardView()
+                TabBarView()
                     .environment(appState)
             } else {
                 LoginView(appState: appState)
