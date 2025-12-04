@@ -9,10 +9,21 @@ import SwiftUI
 
 struct GoalView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 0) {
+            Spacer()
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Mes Objectifs")
+                    .font(.custom("Lexend-Medium", size: 24))
+                    .fontWeight(.bold)
+            }
+        }
     }
 }
 
 #Preview {
-    GoalView()
+    NavigationStack {
+        GoalView()
+    }
 }

@@ -33,22 +33,7 @@ struct DashboardView: View {
                 .padding(.horizontal)
                 
                 Spacer()
-                
-                Button(action: {
-                    appState.token = nil
-                    appState.isLoggedIn = false
-                }) {
-                    Text("Se déconnecter")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 200, height: 50)
-                        .background(Color.red)
-                        .cornerRadius(10)
-                }
-                .padding(.bottom, 20)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.gray.opacity(0.1))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
         }
