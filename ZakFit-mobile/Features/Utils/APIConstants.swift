@@ -12,7 +12,7 @@ struct APIConstants {
 }
 
 enum NetworkError: Error {
-    case invalidURL, requestFailed, invalidResponse
+    case invalidURL, invalidResponse, unauthorized, decodingError, requestFailed
 }
 
 
