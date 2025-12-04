@@ -11,31 +11,35 @@ import Combine
 
 @Observable
 final class AppState {
+    var selectedTab: Int = 0
+    var selectedActivity: ActivityType = .running
+    var user: User?
+    var token: String?
+    var isLoggedIn: Bool = false
     
-    var selectedTab: Int = 2
-
     init() {
         self.token = KeychainService.shared.getToken(forKey: "userToken")
         self.isLoggedIn = token != nil
+        if isLoggedIn {
+            fetchUserInfo()
+        }
     }
     
+    func loadUser() {
+        self.token = KeychainService.shared.getToken(forKey: "userToken")
+        self.isLoggedIn = token != nil
+        if isLoggedIn {
+            fetchUserInfo()
+        }
+    }
     
-    
-    var token: String? {
-        didSet {
-            if let token = token {
-                _ = KeychainService.shared.saveToken(token, forKey: "userToken")
-            } else {
-                _ = KeychainService.shared.deleteToken(forKey: "userToken")
+    private func fetchUserInfo() {
+        Task {
+            do {
+                self.user = try await UserService().fetchUserData()
+            } catch {
+                print("Erreur : \(error)")
             }
         }
     }
-    var isLoggedIn: Bool = false {
-        didSet {
-            if !isLoggedIn {
-                token = nil
-            }
-        }
-    }
-
 }

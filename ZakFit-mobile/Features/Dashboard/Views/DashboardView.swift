@@ -12,6 +12,12 @@ struct DashboardView: View {
     
     var body: some View {
         VStack {
+            
+            Text("Salut \(appState.user?.firstName ?? "User")")
+                .font(.custom("Lexend-Medium", size: 27))
+                .padding()
+        
+            
             Spacer()
             
             Button(action: {
