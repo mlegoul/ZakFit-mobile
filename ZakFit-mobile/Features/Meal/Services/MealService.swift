@@ -10,7 +10,10 @@ import Foundation
 class MealService {
     
     func addMeal(meal: Meal, token: String?) async throws {
-        guard let url = URL(string: "http://localhost:8080/meals") else {
+        
+        let urlString = "\(APIConstants.baseURL)/meals"
+        
+        guard let url = URL(string: urlString) else {
             throw NetworkError.invalidURL
         }
         
